@@ -9,8 +9,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    /// The slider's current value.
-    var currentValue = 50
+    @IBOutlet var slider: UISlider!
+    
+    /// The slider's current value, rounded down to nearest integer or an even.
+    var currentValue: Int {
+        Int(slider.value.rounded(.toNearestOrEven))
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,10 +33,6 @@ class ViewController: UIViewController {
         alert.addAction(action)
         
         present(alert, animated: true)
-    }
-    
-    @IBAction func sliderMoved(_ slider: UISlider) {
-        currentValue = Int(slider.value.rounded(.toNearestOrEven))
     }
 
 }
