@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet var targetLabel: UILabel!
     /// Label to display total score across all rounds played.
     @IBOutlet var scoreLabel: UILabel!
+    /// Label to display the number of rounds played by the user.
+    @IBOutlet var roundLabel: UILabel!
     /// Slider to guess the target value. Drag it to try to match the target value.
     @IBOutlet var slider: UISlider!
     
@@ -22,6 +24,8 @@ class ViewController: UIViewController {
     var targetValue = 0
     /// Keeps track of user's total score. The score is calculated across multiple rounds.
     var score = 0
+    /// Keeps track of total rounds played.
+    var round = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +61,7 @@ class ViewController: UIViewController {
     private func startNewRound() {
         targetValue = Int.random(in: 1...100)
         currentValue = 50
+        round += 1
         
         updateLabels()
     }
@@ -65,6 +70,7 @@ class ViewController: UIViewController {
         slider.value = Float(currentValue)
         targetLabel.text = String(targetValue)
         scoreLabel.text = String(score)
+        roundLabel.text = String(round)
     }
 
 }
