@@ -12,8 +12,10 @@ class ViewController: UIViewController {
     @IBOutlet var slider: UISlider!
     
     /// The slider's current value, rounded down to nearest integer or an even.
-    var currentValue: Int {
-        Int(slider.value.rounded(.toNearestOrEven))
+    var currentValue = 0 {
+        didSet {
+            slider.value = Float(currentValue)
+        }
     }
     /// The target value the user has to match by dragging the slider.
     var targetValue = 0
@@ -21,7 +23,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        targetValue = Int.random(in: 1...100)
+        startNewRound()
     }
     
     @IBAction func showAlert() {
@@ -37,6 +39,17 @@ class ViewController: UIViewController {
         alert.addAction(action)
         
         present(alert, animated: true)
+        
+        startNewRound()
+    }
+    
+    @IBAction func sliderMoved(_ slider: UISlider) {
+        currentValue = Int(slider.value.rounded(.toNearestOrEven))
+    }
+    
+    private func startNewRound() {
+        targetValue = Int.random(in: 1...100)
+        currentValue = 50
     }
 
 }
