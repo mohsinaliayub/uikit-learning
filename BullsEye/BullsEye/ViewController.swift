@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     
     /// Label to display the target value for the user to guess.
     @IBOutlet var targetLabel: UILabel!
+    /// Label to display total score across all rounds played.
+    @IBOutlet var scoreLabel: UILabel!
     /// Slider to guess the target value. Drag it to try to match the target value.
     @IBOutlet var slider: UISlider!
     
@@ -18,6 +20,8 @@ class ViewController: UIViewController {
     var currentValue = 0
     /// The target value the user has to match by dragging the slider.
     var targetValue = 0
+    /// Keeps track of user's total score. The score is calculated across multiple rounds.
+    var score = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +30,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func showAlert() {
-        let message = "The value of the slider is: \(currentValue)" +
-                      "\nThe target value is: \(targetValue)"
+        let difference = abs(targetValue - currentValue)
+        let points = 100 - difference
+        
+        score += points
+        
+        let message = "You scored \(points) points"
         
         let alert = UIAlertController(
             title: "Hello, World",
@@ -37,9 +45,9 @@ class ViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         
-        present(alert, animated: true)
-        
-        startNewRound()
+        present(alert, animated: true) {
+            self.startNewRound()
+        }
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
@@ -56,6 +64,7 @@ class ViewController: UIViewController {
     private func updateLabels() {
         slider.value = Float(currentValue)
         targetLabel.text = String(targetValue)
+        scoreLabel.text = String(score)
     }
 
 }
