@@ -35,25 +35,10 @@ class ViewController: UIViewController {
     
     @IBAction func showAlert() {
         let difference = abs(targetValue - currentValue)
-        var points = 100 - difference
-        
-        let title: String
-        if difference == 0 {
-            title = "Perfect!"
-            points += 100
-        } else if difference < 5 {
-            title = "You almost had it!"
-            if difference == 1 {
-                points += 50
-            }
-        } else if difference < 10 {
-            title = "Pretty good!"
-        } else {
-            title = "Not even close..."
-        }
-        
+        let points = points(basedOn: difference)
         score += points
         
+        let title = title(basedOn: difference)
         let message = "You scored \(points) points"
         
         let alert = UIAlertController(
@@ -61,12 +46,12 @@ class ViewController: UIViewController {
             message: message,
             preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "OK", style: .default)
-        alert.addAction(action)
-        
-        present(alert, animated: true) {
+        let action = UIAlertAction(title: "OK", style: .default) { _ in
             self.startNewRound()
         }
+        alert.addAction(action)
+        
+        present(alert, animated: true)
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
@@ -87,6 +72,31 @@ class ViewController: UIViewController {
         scoreLabel.text = String(score)
         roundLabel.text = String(round)
     }
-
+    
+    private func title(basedOn difference: Int) -> String {
+        let title: String
+        if difference == 0 {
+            title = "Perfect!"
+        } else if difference < 5 {
+            title = "You almost had it!"
+        } else if difference < 10 {
+            title = "Pretty good!"
+        } else {
+            title = "Not even close..."
+        }
+        
+        return title
+    }
+    
+    private func points(basedOn difference: Int) -> Int {
+        var points = 100 - difference
+        if difference == 0 {
+            points += 100 // an extra 100 bonus points for perfect guess
+        } else if difference == 1 {
+            points += 50 // extra 50 points for a near-close guess
+        }
+        
+        return points
+    }
 }
 
