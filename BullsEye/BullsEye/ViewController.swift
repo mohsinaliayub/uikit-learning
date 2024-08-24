@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        startNewRound()
+        startNewGame()
     }
     
     @IBAction func showAlert() {
@@ -56,6 +56,12 @@ class ViewController: UIViewController {
     
     @IBAction func sliderMoved(_ slider: UISlider) {
         currentValue = Int(slider.value.rounded(.toNearestOrEven))
+    }
+    
+    @IBAction func startNewGame() {
+        score = 0
+        round = 0
+        startNewRound()
     }
     
     private func startNewRound() {
