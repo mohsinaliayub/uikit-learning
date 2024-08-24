@@ -15,14 +15,18 @@ class ViewController: UIViewController {
     var currentValue: Int {
         Int(slider.value.rounded(.toNearestOrEven))
     }
+    /// The target value the user has to match by dragging the slider.
+    var targetValue = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        targetValue = Int.random(in: 1...100)
     }
     
     @IBAction func showAlert() {
-        let message = "The value of the slider is: \(currentValue)"
+        let message = "The value of the slider is: \(currentValue)" +
+                      "\nThe target value is: \(targetValue)"
         
         let alert = UIAlertController(
             title: "Hello, World",
