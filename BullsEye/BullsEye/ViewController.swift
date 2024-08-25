@@ -63,6 +63,12 @@ class ViewController: UIViewController {
         score = 0
         round = 0
         startNewRound()
+        // crossfade animation
+        let transition = CATransition()
+        transition.type = .fade
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        view.layer.add(transition, forKey: nil)
     }
     
     private func startNewRound() {
