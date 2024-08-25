@@ -13,6 +13,7 @@
 		684E334D2C205DE3006DB472 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 684E334C2C205DE3006DB472 /* Base */; };
 		684E334F2C205DE6006DB472 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 684E334E2C205DE6006DB472 /* Assets.xcassets */; };
 		684E33522C205DE6006DB472 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 684E33512C205DE6006DB472 /* Base */; };
+		68BFA9A22C7AAE9900E18C86 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BFA9A12C7AAE9900E18C86 /* AboutViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		684E334E2C205DE6006DB472 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		684E33512C205DE6006DB472 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		684E33532C205DE6006DB472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68BFA9A12C7AAE9900E18C86 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				684E33452C205DE3006DB472 /* AppDelegate.swift */,
 				684E33472C205DE3006DB472 /* SceneDelegate.swift */,
 				684E33492C205DE3006DB472 /* ViewController.swift */,
+				68BFA9A12C7AAE9900E18C86 /* AboutViewController.swift */,
 				684E334B2C205DE3006DB472 /* Main.storyboard */,
 				684E334E2C205DE6006DB472 /* Assets.xcassets */,
 				684E33502C205DE6006DB472 /* LaunchScreen.storyboard */,
@@ -140,6 +143,7 @@
 			files = (
 				684E334A2C205DE3006DB472 /* ViewController.swift in Sources */,
 				684E33462C205DE3006DB472 /* AppDelegate.swift in Sources */,
+				68BFA9A22C7AAE9900E18C86 /* AboutViewController.swift in Sources */,
 				684E33482C205DE3006DB472 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
