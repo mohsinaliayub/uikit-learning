@@ -43,7 +43,13 @@
                             <outlet property="delegate" destination="6el-8v-oc1" id="RTj-MY-8dQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Checklists" id="r7U-ui-acq"/>
+                    <navigationItem key="navigationItem" title="Checklists" largeTitleDisplayMode="always" id="r7U-ui-acq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RGL-ij-wsw">
+                            <connections>
+                                <action selector="addItem" destination="6el-8v-oc1" id="RRN-fa-Fnm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naq-Zi-TIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,7 +66,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="6el-8v-oc1" kind="relationship" relationship="rootViewController" id="qTO-GQ-D89"/>
+                        <segue destination="6el-8v-oc1" kind="relationship" relationship="rootViewController" id="7yA-AS-HO6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0Z-H5-3Vw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
