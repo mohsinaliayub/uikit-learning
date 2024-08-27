@@ -76,5 +76,25 @@ class ChecklistViewController: UITableViewController {
         items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddItem" {
+            let controller = segue.destination as! AddItemViewController
+            controller.delegate = self
+        }
+    }
 }
 
+extension ChecklistViewController: AddItemViewControllerDelegate {
+    
+    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+}
