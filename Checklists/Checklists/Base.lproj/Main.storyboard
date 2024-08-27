@@ -67,16 +67,20 @@
                             <tableViewSection id="8pn-SP-bW0">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="OGF-0v-8vX">
-                                        <rect key="frame" x="0.0" y="18" width="375" height="35.5"/>
+                                        <rect key="frame" x="0.0" y="18" width="375" height="38.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OGF-0v-8vX" id="5vD-v9-idn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="38.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rl6-Ei-RDd">
-                                                    <rect key="frame" x="20" y="8" width="335" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the Item" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rl6-Ei-RDd">
+                                                    <rect key="frame" x="20" y="8" width="335" height="22.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="done" destination="d1y-zp-lNN" eventType="editingDidEndOnExit" id="Ifv-Ei-5Ti"/>
+                                                        <outlet property="delegate" destination="d1y-zp-lNN" id="EEl-bX-hCn"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -101,13 +105,14 @@
                                 <action selector="cancel" destination="d1y-zp-lNN" id="PRS-4N-8Jr"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="cv4-a4-jKj">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="cv4-a4-jKj">
                             <connections>
                                 <action selector="done" destination="d1y-zp-lNN" id="D5R-Yq-aeY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="cv4-a4-jKj" id="SSn-KP-tSu"/>
                         <outlet property="textField" destination="Rl6-Ei-RDd" id="FaC-Fm-M97"/>
                     </connections>
                 </tableViewController>
