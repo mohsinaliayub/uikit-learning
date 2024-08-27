@@ -45,6 +45,9 @@
                                         <constraint firstItem="ftZ-wJ-qtj" firstAttribute="centerY" secondItem="uwJ-UN-Y7O" secondAttribute="centerY" id="xTb-gQ-i6k"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="d1y-zp-lNN" kind="show" identifier="EditItem" trigger="accessoryAction" id="4np-dM-kHH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -127,7 +130,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EqF-qV-kqH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1777" y="-3"/>
+            <point key="canvasLocation" x="1786" y="-3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HVT-mA-Eew">
@@ -148,6 +151,9 @@
             <point key="canvasLocation" x="108" y="-3.1484257871064472"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4np-dM-kHH"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

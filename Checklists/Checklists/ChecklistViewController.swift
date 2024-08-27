@@ -9,6 +9,11 @@ import UIKit
 
 class ChecklistViewController: UITableViewController {
     
+    /// Default section for our checklist items.
+    ///
+    /// We only have one section for our Checklist items. So, it's value is 0.
+    private let defaultSection = 0
+    
     var items = [ChecklistItem]()
     
     override func viewDidLoad() {
@@ -72,6 +77,13 @@ class ChecklistViewController: UITableViewController {
         if segue.identifier == "AddItem" {
             let controller = segue.destination as! AddItemViewController
             controller.delegate = self
+        } else if segue.identifier == "EditItem" {
+            let controller = segue.destination as! AddItemViewController
+            controller.delegate = self
+            
+            if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
+                controller.itemToEdit = items[indexPath.row]
+            }
         }
     }
 }
@@ -79,17 +91,30 @@ class ChecklistViewController: UITableViewController {
 extension ChecklistViewController: AddItemViewControllerDelegate {
     
     func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
-        navigationController?.popViewController(animated: true)
+        popViewController()
     }
     
     func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
-        navigationController?.popViewController(animated: true)
+        popViewController()
         
         let newRowIndex = items.count
         items.append(item)
         
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        let indexPath = IndexPath(row: newRowIndex, section: defaultSection)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
+    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem) {
+        popViewController()
+        
+        guard let index = items.firstIndex(of: item) else { return }
+        let indexPath = IndexPath(row: index, section: defaultSection)
+        if let cell = tableView.cellForRow(at: indexPath) {
+            configureText(for: cell, with: item)
+        }
+    }
+    
+    private func popViewController() {
+        navigationController?.popViewController(animated: true)
+    }
 }
