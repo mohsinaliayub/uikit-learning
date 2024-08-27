@@ -30,18 +30,6 @@ class ChecklistViewController: UITableViewController {
         cell.accessoryType = item.checked ? .checkmark : .none
     }
     
-    // MARK: - Actions
-    
-    @IBAction func addItem() {
-        let newRowIndex = items.count
-        
-        let item = ChecklistItem(text: "I am a new row")
-        items.append(item)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
-    
     // MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -95,6 +83,12 @@ extension ChecklistViewController: AddItemViewControllerDelegate {
     
     func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
         navigationController?.popViewController(animated: true)
+        
+        let newRowIndex = items.count
+        items.append(item)
+        
+        let indexPath = IndexPath(row: newRowIndex, section: 0)
+        tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
 }
