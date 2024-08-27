@@ -43,17 +43,61 @@
                             <outlet property="delegate" destination="6el-8v-oc1" id="RTj-MY-8dQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Checklists" largeTitleDisplayMode="always" id="r7U-ui-acq">
+                    <navigationItem key="navigationItem" title="Checklists" id="r7U-ui-acq">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RGL-ij-wsw">
                             <connections>
-                                <action selector="addItem" destination="6el-8v-oc1" id="RRN-fa-Fnm"/>
+                                <segue destination="d1y-zp-lNN" kind="show" id="mhg-iI-EgT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naq-Zi-TIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1047.2" y="-3.1484257871064472"/>
+            <point key="canvasLocation" x="948" y="-3"/>
+        </scene>
+        <!--Add Item-->
+        <scene sceneID="mbG-Rc-WC3">
+            <objects>
+                <tableViewController id="d1y-zp-lNN" customClass="AddItemViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="2yU-sJ-33x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <sections>
+                            <tableViewSection id="8pn-SP-bW0">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OGF-0v-8vX">
+                                        <rect key="frame" x="0.0" y="18" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OGF-0v-8vX" id="5vD-v9-idn">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="d1y-zp-lNN" id="nMf-Z3-V8Q"/>
+                            <outlet property="delegate" destination="d1y-zp-lNN" id="hpV-HR-5Ie"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Item" largeTitleDisplayMode="never" id="haO-15-ZlU">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="26L-Pz-VBV">
+                            <connections>
+                                <action selector="cancel" destination="d1y-zp-lNN" id="PRS-4N-8Jr"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="cv4-a4-jKj">
+                            <connections>
+                                <action selector="done" destination="d1y-zp-lNN" id="D5R-Yq-aeY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EqF-qV-kqH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1777" y="-3"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HVT-mA-Eew">
