@@ -27,7 +27,8 @@ class ChecklistViewController: UITableViewController {
     }
     
     private func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
-        cell.accessoryType = item.checked ? .checkmark : .none
+        let label = cell.viewWithTag(1001) as! UILabel
+        label.isHidden = !item.checked
     }
     
     // MARK: - Table View Data Source
