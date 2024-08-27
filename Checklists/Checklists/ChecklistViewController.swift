@@ -75,10 +75,10 @@ class ChecklistViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddItem" {
-            let controller = segue.destination as! AddItemViewController
+            let controller = segue.destination as! ItemDetailViewController
             controller.delegate = self
         } else if segue.identifier == "EditItem" {
-            let controller = segue.destination as! AddItemViewController
+            let controller = segue.destination as! ItemDetailViewController
             controller.delegate = self
             
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
@@ -88,13 +88,13 @@ class ChecklistViewController: UITableViewController {
     }
 }
 
-extension ChecklistViewController: AddItemViewControllerDelegate {
+extension ChecklistViewController: ItemDetailViewControllerDelegate {
     
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController) {
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController) {
         popViewController()
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem) {
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem) {
         popViewController()
         
         let newRowIndex = items.count
@@ -104,7 +104,7 @@ extension ChecklistViewController: AddItemViewControllerDelegate {
         tableView.insertRows(at: [indexPath], with: .automatic)
     }
     
-    func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem) {
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
         popViewController()
         
         guard let index = items.firstIndex(of: item) else { return }
