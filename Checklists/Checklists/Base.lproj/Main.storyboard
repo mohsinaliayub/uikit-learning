@@ -66,12 +66,25 @@
                         <sections>
                             <tableViewSection id="8pn-SP-bW0">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OGF-0v-8vX">
-                                        <rect key="frame" x="0.0" y="18" width="375" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="OGF-0v-8vX">
+                                        <rect key="frame" x="0.0" y="18" width="375" height="35.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OGF-0v-8vX" id="5vD-v9-idn">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="35.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rl6-Ei-RDd">
+                                                    <rect key="frame" x="20" y="8" width="335" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Rl6-Ei-RDd" firstAttribute="leading" secondItem="5vD-v9-idn" secondAttribute="leading" constant="20" symbolic="YES" id="T0B-cF-gkc"/>
+                                                <constraint firstItem="Rl6-Ei-RDd" firstAttribute="top" secondItem="5vD-v9-idn" secondAttribute="top" constant="8" id="VVX-zF-RTr"/>
+                                                <constraint firstAttribute="trailing" secondItem="Rl6-Ei-RDd" secondAttribute="trailing" constant="20" symbolic="YES" id="ara-sg-Zu9"/>
+                                                <constraint firstAttribute="bottom" secondItem="Rl6-Ei-RDd" secondAttribute="bottom" constant="8" id="iO1-UE-tCK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -94,6 +107,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="textField" destination="Rl6-Ei-RDd" id="FaC-Fm-M97"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EqF-qV-kqH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
