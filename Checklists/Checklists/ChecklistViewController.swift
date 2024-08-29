@@ -24,6 +24,8 @@ class ChecklistViewController: UITableViewController {
         items.append(ChecklistItem(text: "Learn iOS development", checked: true))
         items.append(ChecklistItem(text: "Soccer practice"))
         items.append(ChecklistItem(text: "Eat ice cream", checked: true))
+        
+        print("Documents Directory: \(documentsDirectory())")
     }
     
     private func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
@@ -64,11 +66,14 @@ class ChecklistViewController: UITableViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+        saveChecklistItems()
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
+        
+        saveChecklistItems()
     }
     
     // MARK: - Navigation
@@ -84,6 +89,28 @@ class ChecklistViewController: UITableViewController {
             if let indexPath = tableView.indexPath(for: sender as! UITableViewCell) {
                 controller.itemToEdit = items[indexPath.row]
             }
+        }
+    }
+    
+    // MARK: - Data Persistence
+    
+    private func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    private func dataFilePath() -> URL {
+        documentsDirectory().appending(path: "Checklists.plist")
+    }
+    
+    private func saveChecklistItems() {
+        let encoder = PropertyListEncoder()
+        
+        do {
+            let data = try encoder.encode(items)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        } catch {
+            print("Error encoding items array: \(error.localizedDescription)")
         }
     }
 }
@@ -102,6 +129,8 @@ extension ChecklistViewController: ItemDetailViewControllerDelegate {
         
         let indexPath = IndexPath(row: newRowIndex, section: defaultSection)
         tableView.insertRows(at: [indexPath], with: .automatic)
+        
+        saveChecklistItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
@@ -112,6 +141,8 @@ extension ChecklistViewController: ItemDetailViewControllerDelegate {
         if let cell = tableView.cellForRow(at: indexPath) {
             configureText(for: cell, with: item)
         }
+        
+        saveChecklistItems()
     }
     
     private func popViewController() {
