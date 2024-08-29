@@ -18,14 +18,8 @@ class ChecklistViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        items.append(ChecklistItem(text: "Walk the dog"))
-        items.append(ChecklistItem(text: "Brush my teeth", checked: true))
-        items.append(ChecklistItem(text: "Learn iOS development", checked: true))
-        items.append(ChecklistItem(text: "Soccer practice"))
-        items.append(ChecklistItem(text: "Eat ice cream", checked: true))
         
-        print("Documents Directory: \(documentsDirectory())")
+        loadChecklistItems()
     }
     
     private func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
@@ -111,6 +105,20 @@ class ChecklistViewController: UITableViewController {
             try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
         } catch {
             print("Error encoding items array: \(error.localizedDescription)")
+        }
+    }
+    
+    private func loadChecklistItems() {
+        let path = dataFilePath()
+        
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            
+            do {
+                items = try decoder.decode([ChecklistItem].self, from: data)
+            } catch {
+                print("Error decoding items array: \(error.localizedDescription)")
+            }
         }
     }
 }
