@@ -13,11 +13,13 @@ class ChecklistViewController: UITableViewController {
     ///
     /// We only have one section for our Checklist items. So, it's value is 0.
     private let defaultSection = 0
-    
+    var checklist: Checklist!
     var items = [ChecklistItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = checklist.name
         
         loadChecklistItems()
     }
