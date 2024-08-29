@@ -23,7 +23,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Checklists" id="J8E-Be-sln"/>
                     <connections>
-                        <segue destination="6el-8v-oc1" kind="show" id="15G-mb-cBV"/>
+                        <segue destination="6el-8v-oc1" kind="show" identifier="ShowChecklist" id="15G-mb-cBV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLL-gF-nRj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -87,7 +87,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="naq-Zi-TIP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="948" y="-3"/>
+            <point key="canvasLocation" x="1785" y="-728"/>
         </scene>
         <!--Add Item-->
         <scene sceneID="mbG-Rc-WC3">
@@ -170,7 +170,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b0Z-H5-3Vw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="108" y="-3.1484257871064472"/>
+            <point key="canvasLocation" x="87" y="-728"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
