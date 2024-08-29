@@ -10,9 +10,16 @@ import UIKit
 class AllListsViewController: UITableViewController {
     
     private let cellIdentifier = "ChecklistCell"
+    private var lists = [Checklist]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // add dummy data
+        lists.append(Checklist(name: "Birthdays"))
+        lists.append(Checklist(name: "Groceries"))
+        lists.append(Checklist(name: "Cool Apps"))
+        lists.append(Checklist(name: "To Do"))
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
@@ -20,16 +27,19 @@ class AllListsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return lists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        var configuration = cell.defaultContentConfiguration()
-        configuration.text = "List \(indexPath.row)"
+        let list = lists[indexPath.row]
         
+        var configuration = cell.defaultContentConfiguration()
+        configuration.text = list.name
         cell.contentConfiguration = configuration
+        cell.accessoryType = .detailDisclosureButton
+        
         return cell
     }
     
