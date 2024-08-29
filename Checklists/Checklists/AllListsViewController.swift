@@ -64,6 +64,11 @@ class AllListsViewController: UITableViewController {
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let checklist = lists[indexPath.row]
+        performSegue(withIdentifier: "EditChecklist", sender: checklist)
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -73,6 +78,10 @@ class AllListsViewController: UITableViewController {
         } else if segue.identifier == "AddChecklist" {
             let controller = segue.destination as! ListDetailViewController
             controller.delegate = self
+        } else if segue.identifier == "EditChecklist" {
+            let controller = segue.destination as! ListDetailViewController
+            controller.delegate = self
+            controller.checklistToEdit = sender as? Checklist
         }
     }
 }
