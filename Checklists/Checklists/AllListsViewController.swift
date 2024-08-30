@@ -15,22 +15,11 @@ class AllListsViewController: UITableViewController {
     private let defaultSection = 0
     
     private let cellIdentifier = "ChecklistCell"
-    private var lists = [Checklist]()
+    var dataModel: DataModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // add dummy data
-        lists.append(Checklist(name: "Birthdays"))
-        lists.append(Checklist(name: "Groceries"))
-        lists.append(Checklist(name: "Cool Apps"))
-        lists.append(Checklist(name: "To Do"))
-        
-        for list in lists {
-            let item = ChecklistItem(text: "Item for \(list.name)")
-            list.items.append(item)
-        }
-
+        // register a cell for checklist
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
     }
     
@@ -45,13 +34,13 @@ class AllListsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lists.count
+        return dataModel.lists.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        let list = lists[indexPath.row]
+        let list = dataModel.lists[indexPath.row]
         configureCell(cell, for: list)
         
         return cell
@@ -60,17 +49,17 @@ class AllListsViewController: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let checklist = lists[indexPath.row]
+        let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        lists.remove(at: indexPath.row)
+        dataModel.lists.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let checklist = lists[indexPath.row]
+        let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "EditChecklist", sender: checklist)
     }
     
@@ -99,8 +88,8 @@ extension AllListsViewController: ListDetailViewControllerDelegate {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
         popViewController()
         
-        let newRowIndex = lists.count
-        lists.append(checklist)
+        let newRowIndex = dataModel.lists.count
+        dataModel.lists.append(checklist)
         
         let indexPath = IndexPath(row: newRowIndex, section: defaultSection)
         tableView.insertRows(at: [indexPath], with: .automatic)
@@ -109,7 +98,7 @@ extension AllListsViewController: ListDetailViewControllerDelegate {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist) {
         popViewController()
         
-        guard let index = lists.firstIndex(of: checklist) else { return }
+        guard let index = dataModel.lists.firstIndex(of: checklist) else { return }
         let indexPath = IndexPath(row: index, section: defaultSection)
         if let cell = tableView.cellForRow(at: indexPath) {
             configureCell(cell, for: checklist)

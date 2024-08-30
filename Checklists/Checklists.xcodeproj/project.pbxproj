@@ -18,6 +18,7 @@
 		68923F7C2C7D276C00573481 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 68923F7B2C7D276C00573481 /* Base */; };
 		68923F842C7D446600573481 /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68923F832C7D446600573481 /* ChecklistItem.swift */; };
 		68923F862C7D53A500573481 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68923F852C7D53A500573481 /* ItemDetailViewController.swift */; };
+		68DDDA022C81F2E500EF307C /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68DDDA012C81F2E500EF307C /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		68923F7D2C7D276C00573481 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68923F832C7D446600573481 /* ChecklistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
 		68923F852C7D53A500573481 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		68DDDA012C81F2E500EF307C /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				684F01A22C81297C0038C48B /* AllListsViewController.swift */,
 				684F01A42C812F890038C48B /* Checklist.swift */,
 				684F01A62C8134630038C48B /* ListDetailViewController.swift */,
+				68DDDA012C81F2E500EF307C /* DataModel.swift */,
 			);
 			path = Checklists;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				68923F842C7D446600573481 /* ChecklistItem.swift in Sources */,
 				684F01A52C812F890038C48B /* Checklist.swift in Sources */,
 				684F01A72C8134630038C48B /* ListDetailViewController.swift in Sources */,
+				68DDDA022C81F2E500EF307C /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
