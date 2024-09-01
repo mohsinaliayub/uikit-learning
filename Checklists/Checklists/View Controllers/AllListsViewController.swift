@@ -43,10 +43,23 @@ class AllListsViewController: UITableViewController {
     private func configureCell(_ cell: UITableViewCell, for checklist: Checklist) {
         var configuration = cell.defaultContentConfiguration()
         configuration.text = checklist.name
-        configuration.secondaryText = "\(checklist.uncheckedItems) Remaining"
+        configuration.secondaryText = itemsRemainingText(for: checklist)
         
         cell.contentConfiguration = configuration
         cell.accessoryType = .detailDisclosureButton
+    }
+    
+    private func itemsRemainingText(for checklist: Checklist) -> String {
+        let uncheckedItems = checklist.uncheckedItems
+        let text: String
+        
+        if checklist.items.isEmpty {
+            text = "(No Items)"
+        } else {
+            text = uncheckedItems == 0 ? "All Done" : "\(uncheckedItems) Remaining"
+        }
+        
+        return text
     }
 
     // MARK: - Table view data source
