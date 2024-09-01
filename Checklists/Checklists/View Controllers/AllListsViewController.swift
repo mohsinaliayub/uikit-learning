@@ -38,6 +38,7 @@ class AllListsViewController: UITableViewController {
     private func configureCell(_ cell: UITableViewCell, for checklist: Checklist) {
         var configuration = cell.defaultContentConfiguration()
         configuration.text = checklist.name
+        configuration.secondaryText = "\(checklist.uncheckedItems) Remaining"
         
         cell.contentConfiguration = configuration
         cell.accessoryType = .detailDisclosureButton

@@ -10,6 +10,10 @@ import Foundation
 class Checklist: NSObject, Codable {
     var name: String
     var items: [ChecklistItem]
+    /// The number of unchecked items in the checklist.
+    var uncheckedItems: Int {
+        items.filter({ !$0.checked }).count
+    }
     
     init(name: String) {
         self.name = name
