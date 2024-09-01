@@ -113,6 +113,8 @@ class AllListsViewController: UITableViewController {
     }
 }
 
+// MARK: - List Detail View Controller Delegate
+
 extension AllListsViewController: ListDetailViewControllerDelegate {
     func listDetailViewControllerDidCancel(_ controller: ListDetailViewController) {
         popViewController()
@@ -121,11 +123,9 @@ extension AllListsViewController: ListDetailViewControllerDelegate {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
         popViewController()
         
-        let newRowIndex = dataModel.lists.count
         dataModel.lists.append(checklist)
-        
-        let indexPath = IndexPath(row: newRowIndex, section: defaultSection)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+        dataModel.sortChecklists()
+        tableView.reloadData()
     }
     
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist) {
