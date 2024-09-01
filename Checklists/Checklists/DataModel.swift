@@ -19,6 +19,28 @@ class DataModel {
     
     init() {
         loadChecklists()
+        registerDefaults()
+        handleFirstTime()
+    }
+    
+    private func registerDefaults() {
+        let dictionary = ["FirstTime": true]
+        UserDefaults.standard.register(defaults: dictionary)
+    }
+    
+    /// If the app is launched for first time, create a checklist and save its index.
+    /// User will be navigated to the checklist at first app launch.
+    private func handleFirstTime() {
+        let userDefaults = UserDefaults.standard
+        let firstTime = userDefaults.bool(forKey: "FirstTime")
+        
+        if firstTime {
+            let checklist = Checklist(name: "List")
+            lists.append(checklist)
+            
+            indexOfSelectedChecklist = 0
+            userDefaults.set(false, forKey: "FirstTime")
+        }
     }
     
     private func documentsDirectory() -> URL {
