@@ -14,10 +14,12 @@ class Checklist: NSObject, Codable {
     var uncheckedItems: Int {
         items.filter({ !$0.checked }).count
     }
-    var iconName = "Appointments"
+    /// The icon name for the checklist. The icons are included in the Asset catalog.
+    var iconName: String
     
-    init(name: String) {
+    init(name: String, iconName: String = "No Icon") {
         self.name = name
+        self.iconName = iconName
         items = []
         super.init()
     }
