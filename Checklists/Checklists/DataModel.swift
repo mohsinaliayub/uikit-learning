@@ -10,6 +10,13 @@ import Foundation
 class DataModel {
     var lists: [Checklist] = []
     
+    /// Index of the selected checklist in table view. It is nil, if there was no checklist selected.
+    /// Saved in the UserDefaults.
+    var indexOfSelectedChecklist: Int? {
+        get { UserDefaults.standard.value(forKey: "ChecklistIndex") as? Int }
+        set { UserDefaults.standard.setValue(newValue, forKey: "ChecklistIndex")}
+    }
+    
     init() {
         loadChecklists()
     }

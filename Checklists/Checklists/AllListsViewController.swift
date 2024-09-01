@@ -29,7 +29,7 @@ class AllListsViewController: UITableViewController {
         navigationController?.delegate = self
         
         // restore previously opened checklist, only if the app got terminated
-        if let index = UserDefaults.standard.value(forKey: "ChecklistIndex") as? Int {
+        if let index = dataModel.indexOfSelectedChecklist, dataModel.lists.indices.contains(index) {
             let checklist = dataModel.lists[index]
             performSegue(withIdentifier: "ShowChecklist", sender: checklist)
         }
@@ -62,7 +62,7 @@ class AllListsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // save the index of the checklist to restore later, if app gets terminated
-        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
+        dataModel.indexOfSelectedChecklist = indexPath.row
         let checklist = dataModel.lists[indexPath.row]
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
@@ -130,7 +130,7 @@ extension AllListsViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController === self {
             // remove saved index, as the user navigated back to this view controller
-            UserDefaults.standard.set(nil, forKey: "ChecklistIndex")
+            dataModel.indexOfSelectedChecklist = nil
         }
     }
 }
