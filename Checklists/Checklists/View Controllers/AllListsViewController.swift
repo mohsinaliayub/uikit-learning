@@ -44,6 +44,7 @@ class AllListsViewController: UITableViewController {
         var configuration = cell.defaultContentConfiguration()
         configuration.text = checklist.name
         configuration.secondaryText = itemsRemainingText(for: checklist)
+        configuration.image = UIImage(named: checklist.iconName)
         
         cell.contentConfiguration = configuration
         cell.accessoryType = .detailDisclosureButton

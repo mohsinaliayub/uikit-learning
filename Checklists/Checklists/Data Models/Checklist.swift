@@ -14,6 +14,7 @@ class Checklist: NSObject, Codable {
     var uncheckedItems: Int {
         items.filter({ !$0.checked }).count
     }
+    var iconName = "Appointments"
     
     init(name: String) {
         self.name = name
