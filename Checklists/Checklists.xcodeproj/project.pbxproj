@@ -68,21 +68,61 @@
 		68923F6E2C7D276900573481 /* Checklists */ = {
 			isa = PBXGroup;
 			children = (
-				68923F6F2C7D276900573481 /* AppDelegate.swift */,
-				68923F712C7D276900573481 /* SceneDelegate.swift */,
-				68923F732C7D276900573481 /* ChecklistViewController.swift */,
-				68923F852C7D53A500573481 /* ItemDetailViewController.swift */,
-				68923F832C7D446600573481 /* ChecklistItem.swift */,
-				68923F752C7D276900573481 /* Main.storyboard */,
-				68923F782C7D276C00573481 /* Assets.xcassets */,
-				68923F7A2C7D276C00573481 /* LaunchScreen.storyboard */,
-				68923F7D2C7D276C00573481 /* Info.plist */,
-				684F01A22C81297C0038C48B /* AllListsViewController.swift */,
-				684F01A42C812F890038C48B /* Checklist.swift */,
-				684F01A62C8134630038C48B /* ListDetailViewController.swift */,
-				68DDDA012C81F2E500EF307C /* DataModel.swift */,
+				68B5B7C92C851F22001611B2 /* Data Models */,
+				68B5B7CA2C851F38001611B2 /* View Controllers */,
+				68B5B7CB2C851F54001611B2 /* App Delegates */,
+				68B5B7CC2C851F6B001611B2 /* Storyboards */,
+				68B5B7CD2C851F77001611B2 /* Resources */,
 			);
 			path = Checklists;
+			sourceTree = "<group>";
+		};
+		68B5B7C92C851F22001611B2 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				684F01A42C812F890038C48B /* Checklist.swift */,
+				68923F832C7D446600573481 /* ChecklistItem.swift */,
+				68DDDA012C81F2E500EF307C /* DataModel.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		68B5B7CA2C851F38001611B2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				684F01A22C81297C0038C48B /* AllListsViewController.swift */,
+				68923F732C7D276900573481 /* ChecklistViewController.swift */,
+				68923F852C7D53A500573481 /* ItemDetailViewController.swift */,
+				684F01A62C8134630038C48B /* ListDetailViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		68B5B7CB2C851F54001611B2 /* App Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				68923F6F2C7D276900573481 /* AppDelegate.swift */,
+				68923F712C7D276900573481 /* SceneDelegate.swift */,
+			);
+			path = "App Delegates";
+			sourceTree = "<group>";
+		};
+		68B5B7CC2C851F6B001611B2 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				68923F7A2C7D276C00573481 /* LaunchScreen.storyboard */,
+				68923F752C7D276900573481 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		68B5B7CD2C851F77001611B2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				68923F7D2C7D276C00573481 /* Info.plist */,
+				68923F782C7D276C00573481 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,7 +358,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54L66DHDVH;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Checklists/Info.plist;
+				INFOPLIST_FILE = Checklists/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -346,7 +386,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54L66DHDVH;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Checklists/Info.plist;
+				INFOPLIST_FILE = Checklists/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
