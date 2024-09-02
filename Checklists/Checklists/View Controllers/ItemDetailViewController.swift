@@ -73,6 +73,7 @@ class ItemDetailViewController: UITableViewController {
                 
             }
         }
+        datePicker.isEnabled = switchControl.isOn
     }
     
     // MARK: - Table View Delegate
