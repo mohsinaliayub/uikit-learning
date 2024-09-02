@@ -151,6 +151,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZFf-xs-IsI">
                                                     <rect key="frame" x="306" y="8" width="51" height="31.5"/>
                                                     <color key="onTintColor" systemColor="tintColor"/>
+                                                    <connections>
+                                                        <action selector="shouldRemindToggled:" destination="d1y-zp-lNN" eventType="valueChanged" id="4e5-4h-iSG"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -177,7 +180,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="W8j-Q4-n5F">
-                                                    <rect key="frame" x="95" y="12" width="260" height="36.5"/>
+                                                    <rect key="frame" x="95" y="12" width="260" height="36"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
