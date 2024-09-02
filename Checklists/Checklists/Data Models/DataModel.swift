@@ -8,7 +8,10 @@
 import Foundation
 
 class DataModel {
-    var lists: [Checklist] = []
+    /// An array of ``Checklist`` created by the user.
+    private var checklists: [Checklist] = []
+    /// A count of the number of ``Checklist`` created by the user.
+    var checklistCount: Int { checklists.count }
     
     /// Index of the selected checklist in table view. It is nil, if there was no checklist selected.
     /// Saved in the UserDefaults.
@@ -44,7 +47,7 @@ class DataModel {
         
         if firstTime {
             let checklist = Checklist(name: "List")
-            lists.append(checklist)
+            checklists.append(checklist)
             
             indexOfSelectedChecklist = 0
             userDefaults.set(false, forKey: "FirstTime")
@@ -52,9 +55,39 @@ class DataModel {
     }
     
     func sortChecklists() {
-        lists.sort { list1, list2 in
+        checklists.sort { list1, list2 in
             list1.name.localizedStandardCompare(list2.name) == .orderedAscending
         }
+    }
+    
+    // MARK: - CRUD Operations on Checklist
+    
+    /// Appends a ``Checklist`` and returns the index it has been added at.
+    func add(_ checklist: Checklist) -> Int {
+        let newItemIndex = checklists.count
+        checklists.append(checklist)
+        
+        return newItemIndex
+    }
+    
+    /// Fetch a ``Checklist`` at specified index.
+    func checklist(at index: Int) -> Checklist {
+        checklists[index]
+    }
+    
+    /// Removes a ``Checklist`` at specified index.
+    func removeChecklist(at index: Int) {
+        checklists.remove(at: index)
+    }
+    
+    /// Finds the index of a ``Checklist``, if it exists.
+    func index(of checklist: Checklist) -> Int? {
+        checklists.firstIndex(of: checklist)
+    }
+    
+    
+    func contains(index: Int) -> Bool {
+        checklists.indices.contains(index)
     }
     
     // MARK: - Data Persistence
@@ -71,7 +104,7 @@ class DataModel {
     func saveChecklists() {
         let encoder = PropertyListEncoder()
         do {
-            let data = try encoder.encode(lists)
+            let data = try encoder.encode(checklists)
             try data.write(to: dataFilePath(), options: .atomic)
         } catch {
             print("Error encoding list array: \(error.localizedDescription)")
@@ -84,7 +117,7 @@ class DataModel {
         
         let decoder = PropertyListDecoder()
         do {
-            lists = try decoder.decode([Checklist].self, from: data)
+            checklists = try decoder.decode([Checklist].self, from: data)
             sortChecklists()
         } catch {
             print("Error decoding list array: \(error.localizedDescription)")

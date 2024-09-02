@@ -34,8 +34,8 @@ class AllListsViewController: UITableViewController {
         navigationController?.delegate = self
         
         // restore previously opened checklist, only if the app got terminated
-        if let index = dataModel.indexOfSelectedChecklist, dataModel.lists.indices.contains(index) {
-            let checklist = dataModel.lists[index]
+        if let index = dataModel.indexOfSelectedChecklist, dataModel.contains(index: index) {
+            let checklist = dataModel.checklist(at: index)
             performSegue(withIdentifier: "ShowChecklist", sender: checklist)
         }
     }
@@ -67,14 +67,14 @@ class AllListsViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataModel.lists.count
+        dataModel.checklistCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        let list = dataModel.lists[indexPath.row]
-        configureCell(cell, for: list)
+        let checklist = dataModel.checklist(at: indexPath.row)
+        configureCell(cell, for: checklist)
         
         return cell
     }
@@ -84,17 +84,17 @@ class AllListsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // save the index of the checklist to restore later, if app gets terminated
         dataModel.indexOfSelectedChecklist = indexPath.row
-        let checklist = dataModel.lists[indexPath.row]
+        let checklist = dataModel.checklist(at: indexPath.row)
         performSegue(withIdentifier: "ShowChecklist", sender: checklist)
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        dataModel.lists.remove(at: indexPath.row)
+        dataModel.removeChecklist(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .automatic)
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        let checklist = dataModel.lists[indexPath.row]
+        let checklist = dataModel.checklist(at: indexPath.row)
         performSegue(withIdentifier: "EditChecklist", sender: checklist)
     }
     
@@ -125,7 +125,7 @@ extension AllListsViewController: ListDetailViewControllerDelegate {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishAdding checklist: Checklist) {
         popViewController()
         
-        dataModel.lists.append(checklist)
+        _ = dataModel.add(checklist)
         dataModel.sortChecklists()
         tableView.reloadData()
     }
@@ -133,7 +133,7 @@ extension AllListsViewController: ListDetailViewControllerDelegate {
     func listDetailViewController(_ controller: ListDetailViewController, didFinishEditing checklist: Checklist) {
         popViewController()
         
-        guard let index = dataModel.lists.firstIndex(of: checklist) else { return }
+        guard let index = dataModel.index(of: checklist) else { return }
         let indexPath = IndexPath(row: index, section: defaultSection)
         if let cell = tableView.cellForRow(at: indexPath) {
             configureCell(cell, for: checklist)
