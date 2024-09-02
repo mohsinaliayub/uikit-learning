@@ -21,7 +21,16 @@ class ChecklistItem: NSObject, Codable {
         itemID = DataModel.nextChecklistItemID()
     }
     
+    deinit {
+        removeNotification()
+    }
+    
+    /// Schedules a local notification for this ChecklistItem.
+    ///
+    /// Notification is only scheduled if ``shouldRemind`` is **true** and ``dueDate`` is in the future.
     func scheduleNotification() {
+        // remove previously scheduled notification
+        removeNotification()
         guard shouldRemind && dueDate > Date() else { return }
         
         let content = UNMutableNotificationContent()
@@ -38,7 +47,11 @@ class ChecklistItem: NSObject, Codable {
         
         let center = UNUserNotificationCenter.current()
         center.add(request)
-        
-        print("Scheduled: \(request) for itemID: \(itemID)")
+    }
+    
+    /// Removes the pending notifications for this ChecklistItem.
+    func removeNotification() {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: ["\(itemID)"])
     }
 }
