@@ -9,10 +9,16 @@ import Foundation
 import UserNotifications
 
 class ChecklistItem: NSObject, Codable {
+    /// The task to be performed.
     var text: String
     var checked = false
+    /// The `Date` to receive a reminder.
+    ///
+    /// The reminder will only be triggered if ``shouldRemind`` is **true** and the **Date** is in the future.
     var dueDate = Date()
+    /// A toggle that lets you schedule a notification in the future.
     var shouldRemind = false
+    /// A unique identifier.
     let itemID: Int
     
     init(text: String, checked: Bool = false) {
@@ -50,7 +56,7 @@ class ChecklistItem: NSObject, Codable {
     }
     
     /// Removes the pending notifications for this ChecklistItem.
-    func removeNotification() {
+    private func removeNotification() {
         let center = UNUserNotificationCenter.current()
         center.removePendingNotificationRequests(withIdentifiers: ["\(itemID)"])
     }

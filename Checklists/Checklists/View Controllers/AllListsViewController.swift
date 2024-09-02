@@ -51,13 +51,14 @@ class AllListsViewController: UITableViewController {
     }
     
     private func itemsRemainingText(for checklist: Checklist) -> String {
+        let empty = 0
         let uncheckedItems = checklist.uncheckedItems
         let text: String
         
-        if checklist.items.isEmpty {
+        if checklist.itemCount == empty {
             text = "(No Items)"
         } else {
-            text = uncheckedItems == 0 ? "All Done" : "\(uncheckedItems) Remaining"
+            text = uncheckedItems == empty ? "All Done" : "\(uncheckedItems) Remaining"
         }
         
         return text
