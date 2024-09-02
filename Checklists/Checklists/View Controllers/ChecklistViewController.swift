@@ -15,6 +15,13 @@ class ChecklistViewController: UITableViewController {
     private let defaultSection = 0
     var checklist: Checklist!
     
+    private var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy HH:mm"
+        
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +31,16 @@ class ChecklistViewController: UITableViewController {
     private func configureText(for cell: UITableViewCell, with item: ChecklistItem) {
         let label = cell.viewWithTag(1000) as! UILabel
         label.text = item.text
+        
+        let dateLabel = cell.viewWithTag(1002) as! UILabel
+        let dateText: String
+        if item.dueDate <= Date() {
+            dateText = ""
+        } else {
+            dateText = "Due: \(dateFormatter.string(from: item.dueDate))"
+        }
+        dateLabel.text = dateText
+//        dateLabel.isHidden = item.dueDate <= Date()
     }
     
     private func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
@@ -106,6 +123,7 @@ extension ChecklistViewController: ItemDetailViewControllerDelegate {
         let indexPath = IndexPath(row: index, section: defaultSection)
         if let cell = tableView.cellForRow(at: indexPath) {
             configureText(for: cell, with: item)
+            tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
     

@@ -46,30 +46,40 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="3gb-tC-Mbh">
-                                <rect key="frame" x="0.0" y="50" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="50" width="375" height="81.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3gb-tC-Mbh" id="bU8-Qg-Odf">
-                                    <rect key="frame" x="0.0" y="0.0" width="316.5" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="316.5" height="81.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwJ-UN-Y7O">
-                                            <rect key="frame" x="41" y="11.5" width="42" height="21"/>
+                                            <rect key="frame" x="41" y="19" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✓" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftZ-wJ-qtj">
-                                            <rect key="frame" x="20" y="8.5" width="17" height="27"/>
+                                            <rect key="frame" x="20" y="16" width="17" height="27"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                             <color key="textColor" systemColor="tintColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8n-Cd-ubx" userLabel="Due Date Label">
+                                            <rect key="frame" x="41" y="48" width="31" height="14.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="uwJ-UN-Y7O" firstAttribute="centerY" secondItem="bU8-Qg-Odf" secondAttribute="centerY" id="8wq-cd-5Hp"/>
+                                        <constraint firstItem="A8n-Cd-ubx" firstAttribute="top" secondItem="uwJ-UN-Y7O" secondAttribute="bottom" constant="8" symbolic="YES" id="FF8-pc-ZZn"/>
                                         <constraint firstItem="uwJ-UN-Y7O" firstAttribute="leading" secondItem="ftZ-wJ-qtj" secondAttribute="trailing" constant="4" id="Gyk-Yg-HNJ"/>
+                                        <constraint firstItem="A8n-Cd-ubx" firstAttribute="leading" secondItem="uwJ-UN-Y7O" secondAttribute="leading" id="TgB-IG-y9a"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="A8n-Cd-ubx" secondAttribute="trailing" constant="8" id="hEA-Fw-oja"/>
+                                        <constraint firstItem="uwJ-UN-Y7O" firstAttribute="top" secondItem="bU8-Qg-Odf" secondAttribute="topMargin" constant="8" id="nVr-Y7-n8x"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="uwJ-UN-Y7O" secondAttribute="trailing" constant="8" id="sMq-a6-Slf"/>
                                         <constraint firstItem="ftZ-wJ-qtj" firstAttribute="leading" secondItem="bU8-Qg-Odf" secondAttribute="leading" constant="20" symbolic="YES" id="vZK-0J-hxR"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="A8n-Cd-ubx" secondAttribute="bottom" constant="8" id="w51-kT-eVU"/>
                                         <constraint firstItem="ftZ-wJ-qtj" firstAttribute="centerY" secondItem="uwJ-UN-Y7O" secondAttribute="centerY" id="xTb-gQ-i6k"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -180,7 +190,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="W8j-Q4-n5F">
-                                                    <rect key="frame" x="95" y="12" width="260" height="36"/>
+                                                    <rect key="frame" x="95" y="12" width="260" height="36.5"/>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
@@ -391,6 +401,9 @@
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.015686274509803921" green="0.66274509803921566" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
