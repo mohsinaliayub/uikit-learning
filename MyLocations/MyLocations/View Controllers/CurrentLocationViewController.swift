@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CurrentLocationViewController: UIViewController {
     
@@ -16,6 +17,9 @@ class CurrentLocationViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var getButton: UIButton!
+    
+    // MARK: Properties
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +28,28 @@ class CurrentLocationViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func getLocation() {
+        let authStatus = locationManager.authorizationStatus
+        if authStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+            return
+        }
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
     }
 }
 
+// MARK: - Location Manager Delegate
+
+extension CurrentLocationViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
+        print("didFailWithError: \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let newLocation = locations.last!
+        print("didUpdateLocations: \(newLocation)")
+    }
+}
