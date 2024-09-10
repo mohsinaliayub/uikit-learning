@@ -137,8 +137,27 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
-        location = newLocation
-        lastLocationError = nil
         print("didUpdateLocations: \(newLocation)")
+        
+        // cached result - discard it.
+        if newLocation.timestamp.timeIntervalSinceNow < -5 { return }
+        
+        // accuracy less than 0 means an invalid measurement - discard it.
+        if newLocation.horizontalAccuracy < 0 { return }
+        
+        // if there's no previous reading, save it.
+        // if there's a previous reading and new reading is more accurate than the previous one. Save it.
+        // greater horizontal accuracy means a less accurate result. 100 meters is worse than 10 meters.
+        if location == nil || location!.horizontalAccuracy > newLocation.horizontalAccuracy {
+            // clear the last error and save it.
+            location = newLocation
+            lastLocationError = nil
+            
+            // new location's accuracy is equal to or better than the desired accuracy, stop location updates.
+            if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
+                print("** We're done! **")
+                stopLocationManager()
+            }
+        }
     }
 }
