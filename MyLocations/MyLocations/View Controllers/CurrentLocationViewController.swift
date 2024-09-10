@@ -46,7 +46,14 @@ class CurrentLocationViewController: UIViewController {
             return
         }
         
-        startLocationManager()
+        if updatingLocation {
+            stopLocationManager()
+            updateLabels()
+        } else {
+            location = nil
+            lastLocationError = nil
+            startLocationManager()
+        }
     }
     
     // MARK: Helper Methods
@@ -65,6 +72,7 @@ class CurrentLocationViewController: UIViewController {
     }
     
     func updateLabels() {
+        configureGetButton()
         guard let location else {
             latitudeLabel.text = ""
             longitudeLabel.text = ""
@@ -97,6 +105,11 @@ class CurrentLocationViewController: UIViewController {
         }
         
         messageLabel.text = statusMessage
+    }
+    
+    func configureGetButton() {
+        let title = updatingLocation ? "Stop" : "Get My Location"
+        getButton.setTitle(title, for: .normal)
     }
     
     // MARK: Location Manager
@@ -149,15 +162,15 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
         // if there's a previous reading and new reading is more accurate than the previous one. Save it.
         // greater horizontal accuracy means a less accurate result. 100 meters is worse than 10 meters.
         if location == nil || location!.horizontalAccuracy > newLocation.horizontalAccuracy {
-            // clear the last error and save it.
-            location = newLocation
-            lastLocationError = nil
-            
             // new location's accuracy is equal to or better than the desired accuracy, stop location updates.
             if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
                 print("** We're done! **")
                 stopLocationManager()
             }
+            
+            // clear the last error and save it.
+            lastLocationError = nil
+            location = newLocation
         }
     }
 }
