@@ -25,6 +25,8 @@ class CurrentLocationViewController: UIViewController {
             updateLabels()
         }
     }
+    var updatingLocation = false
+    var lastLocationError: Error?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +46,7 @@ class CurrentLocationViewController: UIViewController {
             return
         }
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
+        startLocationManager()
     }
     
     // MARK: Helper Methods
@@ -70,7 +70,7 @@ class CurrentLocationViewController: UIViewController {
             longitudeLabel.text = ""
             addressLabel.text = ""
             tagButton.isHidden = true
-            messageLabel.text = "Tap 'Get My Location' to Start"
+            updateStatusMessage()
             return
         }
         
@@ -78,6 +78,45 @@ class CurrentLocationViewController: UIViewController {
         longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
         tagButton.isHidden = false
         messageLabel.text = ""
+    }
+    
+    func updateStatusMessage() {
+        let statusMessage: String
+        if let error = lastLocationError as? NSError {
+            if error.domain == kCLErrorDomain && error.code == CLError.denied.rawValue {
+                statusMessage = "Location Services Disabled"
+            } else {
+                statusMessage = "Error Getting Location"
+            }
+        } else if locationManager.authorizationStatus == .denied || locationManager.authorizationStatus == .restricted {
+            statusMessage = "Location Services Disabled"
+        } else if updatingLocation {
+            statusMessage = "Searching..."
+        } else {
+            statusMessage = "Tap 'Get My Location' to Start"
+        }
+        
+        messageLabel.text = statusMessage
+    }
+    
+    // MARK: Location Manager
+    
+    func startLocationManager() {
+        guard locationManager.authorizationStatus == .authorizedWhenInUse ||
+            locationManager.authorizationStatus == .authorizedAlways else { return }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
+        updatingLocation = true
+    }
+    
+    func stopLocationManager() {
+        if updatingLocation {
+            locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            updatingLocation = false
+        }
     }
 }
 
@@ -87,11 +126,19 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: any Error) {
         print("didFailWithError: \(error.localizedDescription)")
+        
+        if (error as NSError).code == CLError.locationUnknown.rawValue {
+            return
+        }
+        lastLocationError = error
+        stopLocationManager()
+        updateLabels()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let newLocation = locations.last!
         location = newLocation
+        lastLocationError = nil
         print("didUpdateLocations: \(newLocation)")
     }
 }
