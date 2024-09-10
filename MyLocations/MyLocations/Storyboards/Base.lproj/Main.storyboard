@@ -97,7 +97,7 @@
                             <constraint firstItem="MAG-7s-rMa" firstAttribute="centerY" secondItem="gTh-9u-eEj" secondAttribute="centerY" id="xEW-Cb-s9u"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Tag" id="DCM-8h-jzr"/>
+                    <tabBarItem key="tabBarItem" title="Tag" image="Tag" id="DCM-8h-jzr"/>
                     <connections>
                         <outlet property="addressLabel" destination="CjU-ub-PO3" id="aHh-dv-CoY"/>
                         <outlet property="getButton" destination="AOC-js-kyl" id="DOa-fA-eS8"/>
@@ -131,6 +131,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Tag" width="30" height="30"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
