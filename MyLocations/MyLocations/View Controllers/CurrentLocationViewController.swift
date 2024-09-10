@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  CurrentLocationViewController.swift
 //  MyLocations
 //
 //  Created by Mohsin Ali Ayub on 10.09.24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class CurrentLocationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
